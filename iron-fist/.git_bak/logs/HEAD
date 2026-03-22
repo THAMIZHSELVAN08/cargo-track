@@ -1,4 +1,0 @@
-0000000000000000000000000000000000000000 3ba19dfa721be9b7d4933cab32dd556783c41665 THAMIZHSELVAN08 <thamizhselvan326@gmail.com> 1773900064 +0530	commit (initial): Initial commit of iron-fist
-3ba19dfa721be9b7d4933cab32dd556783c41665 1718aab470ccb68c6b5268d121f9499439d3aa9e THAMIZHSELVAN08 <thamizhselvan326@gmail.com> 1773900595 +0530	commit: fix: 6 security/stability hardening patches
-1718aab470ccb68c6b5268d121f9499439d3aa9e 2fbdbc1b57c2ea6dc367be15752cadbd95e383f6 THAMIZHSELVAN08 <thamizhselvan326@gmail.com> 1773901227 +0530	commit: feat: implement all software-solvable security improvements
-2fbdbc1b57c2ea6dc367be15752cadbd95e383f6 40a34ab1ea39cbd28bb05442534c28a45ab64b95 THAMIZHSELVAN08 <thamizhselvan326@gmail.com> 1773907195 +0530	commit: feat: complete end-to-end admin functionality improvements
