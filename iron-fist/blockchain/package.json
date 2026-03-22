@@ -1,0 +1,18 @@
+{
+  "name": "iron-fist-blockchain",
+  "version": "1.0.0",
+  "description": "Iron Fist Smart Contract — Hardhat project",
+  "scripts": {
+    "node": "npx hardhat node",
+    "compile": "npx hardhat compile",
+    "deploy:local": "npx hardhat run scripts/deploy.js --network localhost",
+    "deploy:hardhat": "npx hardhat run scripts/deploy.js --network hardhat",
+    "test": "npx hardhat test",
+    "clean": "npx hardhat clean"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.5",
+    "dotenv": "^16.4.1"
+  }
+}

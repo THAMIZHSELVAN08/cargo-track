@@ -1,0 +1,10 @@
+feat: complete end-to-end admin functionality improvements
+
+Frontend:
+- Created AddDriverModal to allow admins to register drivers from the UI
+- Integrated AddDriverModal into Dashboard sidebar (admin only)
+- VehiclePanel UI logic stabilized against backend API
+
+Backend:
+- Fixed immobilize API by adding /immobilize/status/all route and controller function
+- Upgraded seed.js to create both Users and matching Vehicles for UI synchronization

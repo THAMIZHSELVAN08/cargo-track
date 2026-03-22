@@ -1,0 +1,467 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   DESIGN SYSTEM  —  Editorial Light / Apple–Google Clarity
+   ─────────────────────────────────────────────────────────────
+   Display  : Playfair Display  — authoritative editorial serif
+   Data     : Geist Mono        — precise, refined monospace
+   Body/UI  : Plus Jakarta Sans — geometric grotesque
+   ─────────────────────────────────────────────────────────────
+   Palette  :
+     #F8F7F4  warm off-white   — base surface
+     #FFFFFF  pure white       — cards / panels / inputs
+     #F3F2EF  cool off-white   — hover fills
+     #0D0D0D  near-black       — primary ink
+     #3A3A3A  dark grey        — secondary ink
+     #888888  mid grey         — muted / placeholders
+     #C0BFBC  light grey       — borders (dim)
+     #E2E1DE  warm grey        — borders (default)
+     #C8C7C4  medium grey      — borders (strong / focus)
+     #C93535  crimson          — danger
+     #B8720F  amber            — warning
+     #1A7A52  emerald          — success
+     #1455AA  blue             — info / pending
+───────────────────────────────────────────────────────────── */
+
+@layer base {
+  :root {
+    /* ── Surfaces ── */
+    --color-background:    #F8F7F4;
+    --color-surface:       #F8F7F4;
+    --color-surface-light: #FFFFFF;
+    --color-surface-hover: #F3F2EF;
+    --color-surface-active:#EAEAE8;
+
+    /* ── Borders ── */
+    --color-border:        #E2E1DE;
+    --color-border-strong: #C8C7C4;
+    --color-border-focus:  #0D0D0D;
+
+    /* ── Ink ── */
+    --color-ink-1:         #0D0D0D;
+    --color-ink-2:         #3A3A3A;
+    --color-ink-3:         #888888;
+    --color-ink-4:         #C0BFBC;
+
+    /* ── Semantic ── */
+    --color-primary:       #0D0D0D;
+    --color-primary-dark:  #000000;
+    --color-primary-light: #3A3A3A;
+
+    --color-danger:        #C93535;
+    --color-danger-bg:     #FDF2F2;
+    --color-danger-border: #F0CACA;
+
+    --color-amber:         #B8720F;
+    --color-amber-bg:      #FEFBF2;
+    --color-amber-border:  #EDD9A3;
+
+    --color-success:       #1A7A52;
+    --color-success-bg:    #F2FAF6;
+    --color-success-border:#A8D9C0;
+
+    --color-accent:        #1455AA;
+    --color-accent-bg:     #F2F6FD;
+    --color-accent-border: #AABFE0;
+  }
+
+  html {
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-textMain;
+    @apply selection:bg-primary/10 selection:text-primary;
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--color-ink-1);
+    background: var(--color-background);
+  }
+
+  /* ── Heading defaults — Playfair Display ── */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    font-weight: 600;
+    color: var(--color-ink-1);
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Monospace elements ── */
+  code, kbd, pre, samp, .mono, .font-mono {
+    font-family: 'Geist Mono', 'Courier New', monospace !important;
+    font-size: 0.92em;
+  }
+}
+
+@layer components {
+
+  /* ── Panel / card — replaces glass-panel ── */
+  .glass-panel {
+    @apply bg-surfaceLight border border-border rounded-none shadow-sm;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Hairline top rule — subtle, just lifts the card */
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--color-ink-1);
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  /* ── Primary button ── */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center
+           px-5 py-2.5 text-xs font-bold tracking-widest uppercase
+           text-white bg-primary border border-primary
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-background
+           disabled:opacity-40 disabled:cursor-not-allowed;
+    border-radius: 0;
+    letter-spacing: 0.12em;
+  }
+  .btn-primary:hover:not(:disabled) {
+    @apply bg-primaryDark border-primaryDark;
+  }
+  .btn-primary:active:not(:disabled) {
+    transform: scale(0.99);
+  }
+
+  /* ── Danger button ── */
+  .btn-danger {
+    @apply relative inline-flex items-center justify-center
+           px-5 py-2.5 text-xs font-bold tracking-widest uppercase
+           text-white bg-danger border border-danger
+           transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-danger focus:ring-offset-2 focus:ring-offset-background
+           disabled:opacity-40 disabled:cursor-not-allowed;
+    border-radius: 0;
+    letter-spacing: 0.12em;
+  }
+  .btn-danger:hover:not(:disabled) {
+    background: #b52e2e;
+    border-color: #b52e2e;
+  }
+
+  /* ── Ghost / outline button ── */
+  .btn-ghost {
+    @apply relative inline-flex items-center justify-center
+           px-5 py-2.5 text-xs font-bold tracking-widest uppercase
+           text-textMain bg-transparent border border-border
+           transition-all duration-200
+           hover:bg-surfaceHover hover:border-borderStrong
+           focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2
+           disabled:opacity-40 disabled:cursor-not-allowed;
+    border-radius: 0;
+    letter-spacing: 0.12em;
+  }
+
+  /* ── Input field ── */
+  .input-field {
+    @apply w-full px-3.5 py-2.5
+           bg-surface border border-border
+           text-textMain placeholder-textMuted
+           text-sm font-normal
+           transition-all duration-150
+           outline-none;
+    border-radius: 0;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  .input-field:hover {
+    @apply bg-surfaceLight border-borderStrong;
+  }
+  .input-field:focus {
+    @apply bg-surfaceLight border-primary;
+    box-shadow: 0 0 0 3px rgba(13, 13, 13, 0.06);
+  }
+
+  /* ── Status / label chip ── */
+  .chip {
+    @apply inline-flex items-center gap-1
+           px-2 py-0.5
+           text-[9.5px] font-medium tracking-wider uppercase
+           border;
+    font-family: 'Geist Mono', monospace;
+    border-radius: 0;
+  }
+  .chip-success {
+    @apply bg-successBg text-success border-successBorder;
+  }
+  .chip-danger {
+    @apply bg-dangerBg text-danger border-dangerBorder;
+  }
+  .chip-amber {
+    @apply bg-amberBg text-amber border-amberBorder;
+  }
+  .chip-blue {
+    @apply bg-accentBg text-accent border-accentBorder;
+  }
+  .chip-neutral {
+    @apply bg-surface text-textMuted border-border;
+  }
+
+  /* ── Panel header ── */
+  .panel-header {
+    @apply flex items-center justify-between
+           px-5 py-3
+           border-b border-border bg-surfaceLight;
+  }
+  .panel-header h2 {
+    @apply text-base;
+    font-style: italic;
+  }
+
+  /* ── Data table row ── */
+  .data-row {
+    @apply flex items-center gap-3
+           px-5 py-2.5
+           border-b border-border
+           transition-colors duration-100
+           cursor-default;
+  }
+  .data-row:hover {
+    @apply bg-surfaceHover;
+  }
+  .data-row:last-child {
+    @apply border-b-0;
+  }
+
+  /* ── Divider with optional label ── */
+  .divider {
+    @apply border-t border-border;
+  }
+
+  /* ── Micro label ── */
+  .label-micro {
+    @apply text-[10px] font-bold tracking-widest uppercase text-textMuted;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* ── Nav item ── */
+  .nav-item {
+    @apply relative flex items-center gap-2.5 w-full
+           px-3 py-2.5
+           text-xs font-medium tracking-wide uppercase
+           text-textMuted bg-transparent border border-transparent
+           transition-all duration-200 cursor-pointer;
+    border-radius: 6px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+  .nav-item:hover {
+    @apply bg-surfaceHover text-textSecondary border-border;
+  }
+  .nav-item.active {
+    @apply bg-primary text-white border-primary;
+  }
+
+  /* ── Scrollable area ── */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) transparent;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-strong);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   LEAFLET — light map overrides
+   Replaces the dark invert hack with clean light styling
+───────────────────────────────────────────────────────────── */
+.leaflet-container {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  background-color: var(--color-background) !important;
+}
+
+/* Remove the dark-theme invert filter — not needed on light map */
+.leaflet-layer,
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out,
+.leaflet-control-attribution {
+  filter: none;
+}
+
+/* Zoom controls — match the design system */
+.leaflet-control-zoom {
+  border: 1px solid var(--color-border) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.08) !important;
+  overflow: hidden;
+}
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background: var(--color-surface-light) !important;
+  color: var(--color-ink-2) !important;
+  border-bottom: 1px solid var(--color-border) !important;
+  font-family: 'Geist Mono', monospace !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  width: 28px !important;
+  height: 28px !important;
+  line-height: 28px !important;
+  text-indent: 0 !important;
+  transition: background 0.15s, color 0.15s;
+}
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  background: var(--color-surface-hover) !important;
+  color: var(--color-ink-1) !important;
+}
+
+/* Attribution */
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.85) !important;
+  color: var(--color-ink-4) !important;
+  font-family: 'Geist Mono', monospace !important;
+  font-size: 9px !important;
+  border-top: 1px solid var(--color-border) !important;
+  backdrop-filter: blur(4px);
+}
+.leaflet-control-attribution a {
+  color: var(--color-accent) !important;
+}
+
+/* Popup */
+.leaflet-popup-content-wrapper {
+  background: var(--color-surface-light) !important;
+  border: 1px solid var(--color-border) !important;
+  border-radius: 0 !important;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10) !important;
+  padding: 0 !important;
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  color: var(--color-ink-1) !important;
+}
+.leaflet-popup-tip {
+  background: var(--color-surface-light) !important;
+  box-shadow: none !important;
+}
+.leaflet-popup-close-button {
+  color: var(--color-ink-3) !important;
+  font-size: 16px !important;
+  padding: 6px 8px !important;
+  top: 2px !important;
+  right: 2px !important;
+}
+.leaflet-popup-close-button:hover {
+  color: var(--color-ink-1) !important;
+  background: var(--color-surface-hover) !important;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TAILWIND CUSTOM PROPERTY BRIDGES
+   These let Tailwind classes like bg-background, text-textMain
+   etc. work against the CSS variables above
+───────────────────────────────────────────────────────────── */
+@layer utilities {
+  /* Backgrounds */
+  .bg-background    { background-color: var(--color-background)    !important; }
+  .bg-surface       { background-color: var(--color-surface)       !important; }
+  .bg-surfaceLight  { background-color: var(--color-surface-light) !important; }
+  .bg-surfaceHover  { background-color: var(--color-surface-hover) !important; }
+  .bg-dangerBg      { background-color: var(--color-danger-bg)     !important; }
+  .bg-successBg     { background-color: var(--color-success-bg)    !important; }
+  .bg-amberBg       { background-color: var(--color-amber-bg)      !important; }
+  .bg-accentBg      { background-color: var(--color-accent-bg)     !important; }
+
+  /* Text */
+  .text-textMain      { color: var(--color-ink-1)     !important; }
+  .text-textSecondary { color: var(--color-ink-2)     !important; }
+  .text-textMuted     { color: var(--color-ink-3)     !important; }
+  .text-textDim       { color: var(--color-ink-4)     !important; }
+  .text-primary       { color: var(--color-primary)   !important; }
+  .text-danger        { color: var(--color-danger)    !important; }
+  .text-success       { color: var(--color-success)   !important; }
+  .text-amber         { color: var(--color-amber)     !important; }
+  .text-accent        { color: var(--color-accent)    !important; }
+
+  /* Borders */
+  .border-border       { border-color: var(--color-border)        !important; }
+  .border-borderStrong { border-color: var(--color-border-strong) !important; }
+  .border-primary      { border-color: var(--color-primary)       !important; }
+  .border-danger       { border-color: var(--color-danger)        !important; }
+  .border-dangerBorder { border-color: var(--color-danger-border) !important; }
+  .border-success      { border-color: var(--color-success)       !important; }
+  .border-successBorder{ border-color: var(--color-success-border)!important; }
+  .border-amber        { border-color: var(--color-amber)         !important; }
+  .border-amberBorder  { border-color: var(--color-amber-border)  !important; }
+  .border-accent       { border-color: var(--color-accent)        !important; }
+  .border-accentBorder { border-color: var(--color-accent-border) !important; }
+
+  /* Semantic color fills */
+  .bg-primary      { background-color: var(--color-primary)   !important; }
+  .bg-primaryDark  { background-color: var(--color-primary-dark) !important; }
+  .bg-danger       { background-color: var(--color-danger)    !important; }
+  .bg-success      { background-color: var(--color-success)   !important; }
+  .bg-amber        { background-color: var(--color-amber)     !important; }
+  .bg-accent       { background-color: var(--color-accent)    !important; }
+
+  /* Ring */
+  .ring-primary  { --tw-ring-color: var(--color-primary) !important; }
+  .ring-danger   { --tw-ring-color: var(--color-danger)  !important; }
+
+  /* Focus ring offset */
+  .ring-offset-background { --tw-ring-offset-color: var(--color-background) !important; }
+
+  /* Shadow — minimal, no glow */
+  .shadow-glow         { box-shadow: 0 2px 16px rgba(0,0,0,0.10) !important; }
+  .shadow-glow-danger  { box-shadow: 0 2px 16px rgba(201,53,53,0.18) !important; }
+  .shadow-text         { text-shadow: none !important; }
+
+  /* Font families */
+  .font-display { font-family: 'Playfair Display', Georgia, serif !important; }
+  .font-mono    { font-family: 'Geist Mono', 'Courier New', monospace !important; }
+  .font-ui      { font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important; }
+
+  /* Border radius override — sharp corners throughout */
+  .rounded-xl   { border-radius: 4px !important; }
+  .rounded-2xl  { border-radius: 4px !important; }
+  .rounded-lg   { border-radius: 3px !important; }
+  .rounded-md   { border-radius: 2px !important; }
+  .rounded-sm   { border-radius: 1px !important; }
+  .rounded-full { border-radius: 9999px !important; } /* keep pills as pills */
+
+  /* Backdrop blur — remove for light theme (not needed) */
+  .backdrop-blur-md { backdrop-filter: none !important; }
+  .backdrop-blur-sm { backdrop-filter: none !important; }
+
+  /* Animate pulse — gentler for light theme */
+  @keyframes pulse-light {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.55; }
+  }
+  .animate-pulse { animation: pulse-light 2.4s ease-in-out infinite !important; }
+}
